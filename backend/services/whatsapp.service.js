@@ -8,7 +8,7 @@ class WhatsAppMetaService {
    * @returns {Promise<string>} Access token
    */
   static async exchangeCodeForToken(code) {
-    const url = 'https://graph.facebook.com/v19.0/oauth/access_token';
+    const url = 'https://graph.facebook.com/v23.0/oauth/access_token';
     const params = {
       client_id: config.metaAppId,
       redirect_uri: config.metaRedirectUri,
@@ -56,7 +56,7 @@ class WhatsAppMetaService {
    * @returns {Promise<any>} WABA Details
    */
   static async getWabaDetails(wabaId, accessToken) {
-    const url = `https://graph.facebook.com/v19.0/${wabaId}`;
+    const url = `https://graph.facebook.com/v23.0/${wabaId}`;
     try {
       const response = await axios.get(url, {
         headers: { Authorization: `Bearer ${accessToken}` }
@@ -75,7 +75,7 @@ class WhatsAppMetaService {
    * @returns {Promise<Array>} List of phone numbers
    */
   static async getWabaPhoneNumbers(wabaId, accessToken) {
-    const url = `https://graph.facebook.com/v19.0/${wabaId}/phone_numbers`;
+    const url = `https://graph.facebook.com/v23.0/${wabaId}/phone_numbers`;
     try {
       const response = await axios.get(url, {
         headers: { Authorization: `Bearer ${accessToken}` }
@@ -94,7 +94,7 @@ class WhatsAppMetaService {
    * @returns {Promise<any>} Business details
    */
   static async getBusinessPortfolio(businessId, accessToken) {
-    const url = `https://graph.facebook.com/v19.0/${businessId}`;
+    const url = `https://graph.facebook.com/v23.0/${businessId}`;
     try {
       const response = await axios.get(url, {
         headers: { Authorization: `Bearer ${accessToken}` }
@@ -116,7 +116,7 @@ class WhatsAppMetaService {
    * @returns {Promise<boolean>} Success status
    */
   static async registerPhoneNumber(phoneNumberId, accessToken, pin = '123456') {
-    const url = `https://graph.facebook.com/v19.0/${phoneNumberId}/register`;
+    const url = `https://graph.facebook.com/v23.0/${phoneNumberId}/register`;
     const payload = {
       messaging_product: 'whatsapp',
       pin: pin

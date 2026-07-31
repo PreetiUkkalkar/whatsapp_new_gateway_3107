@@ -18,7 +18,7 @@ class MetaProvider extends BaseProvider {
     // Clean recipient phone number (remove '+', space, brackets)
     const cleanRecipient = recipient.replace(/\D/g, '');
 
-    const url = `https://graph.facebook.com/v19.0/${phoneNumberId}/messages`;
+    const url = `https://graph.facebook.com/v23.0/${phoneNumberId}/messages`;
     
     const payload = {
       messaging_product: 'whatsapp',

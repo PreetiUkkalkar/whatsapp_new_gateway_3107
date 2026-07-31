@@ -59,12 +59,11 @@ const getWhatsAppConnect = async (req, res, next) => {
     const stateToken = jwt.sign(statePayload, config.jwtSecret);
 
     // Build OAuth Redirect URL
-    const oauthUrl = new URL('https://www.facebook.com/v19.0/dialog/oauth');
+    const oauthUrl = new URL('https://www.facebook.com/v23.0/dialog/oauth');
     oauthUrl.searchParams.append('client_id', config.metaAppId);
     oauthUrl.searchParams.append('redirect_uri', config.metaRedirectUri);
     oauthUrl.searchParams.append('response_type', 'code');
     oauthUrl.searchParams.append('state', stateToken);
-    oauthUrl.searchParams.append('auth_type', 'rerequest');
     if (config.metaConfigId) {
       oauthUrl.searchParams.append('config_id', config.metaConfigId);
     } else {
@@ -77,6 +76,8 @@ const getWhatsAppConnect = async (req, res, next) => {
       featureType: 'whatsapp_business_app_onboarding',
       sessionInfoVersion: '3'
     }));
+
+    console.log("Embedded Signup URL:", oauthUrl.toString());
 
     res.json({
       success: true,
